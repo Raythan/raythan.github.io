@@ -5,7 +5,7 @@ namespace APICommunicator.Controllers
 {
     [ApiController]
     [Route("[controller]/v1")]
-    public class CommunicateController : ControllerBase
+    public class ConvertController : ControllerBase
     {
         private IConfiguration configuration;
 
