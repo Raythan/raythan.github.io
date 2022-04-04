@@ -40,6 +40,9 @@
    <a href="https://www.mysql.com/">
       <img src="./assets/mysql-server.svg" alt="MySQL" height="60" width="60"/>
    </a>
+   <a href="https://oracle.com/">
+      <img src="./assets/oracle.svg" alt="Oracle" height="60" width="60"/>
+   </a>
    <a href="https://www.lua.org">
       <img src="./assets/lua.svg" alt="Lua" height="60" width="60"/>
    </a>
@@ -48,6 +51,9 @@
    </a>
    <a href="https://about.gitlab.com/">
       <img src="./assets/gitlab.svg" alt="GitLab" height="60" width="60"/>
+   </a>
+   <a href="https://google.com/">
+      <img src="./assets/google.svg" alt="GitLab" height="60" width="60"/>
    </a>
 </p>
 
