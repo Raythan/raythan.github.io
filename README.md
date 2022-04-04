@@ -63,5 +63,4 @@
          src="https://img.shields.io/badge/LinkedIn-1C1C1C?style=for-the-badge&logo=linkedin&logoColor=00FFFF"
   </a>
 </p>
-<h5 align="center">Seu @</h5>
 </details>
