@@ -60,7 +60,7 @@
 <h3 align="center">Sobre mim:</h3>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/raythan-padovani-8723a3a8/">
+  <a target="_blank" href="https://www.linkedin.com/in/raythan-padovani-8723a3a8/">
     <img
          align="center"
          src="https://img.shields.io/badge/LinkedIn-1C1C1C?style=for-the-badge&logo=linkedin&logoColor=00FFFF"
