@@ -13,38 +13,32 @@
    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="60" height="60"/>
    </a>
-   <a href="https://www.slack.com">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="slack" width="60" height="60"/>
-   </a>
    <a href="https://git-scm.com/">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="60" height="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="Csharp" height="60" width="60"/>
    </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/linux-mint.svg" alt="Linux Mint" height="60" width="60"/>
-   </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
+   <a href="https://www.office.com/">
       <img src="./assets/office-365.svg" alt="Office 365" height="60" width="60"/>
    </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/sql-server.svg" alt="SQL Server" height="60" width="60"/>
+   <a href="https://www.microsoft.com/windows">
+      <img src="./assets/windows.svg" alt="Windows" height="60" width="60"/>
    </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/mysql-server.svg" alt="MySQL" height="60" width="60"/>
-   </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/teams.svg" alt="Teams" height="60" width="60"/>
-   </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/ubuntu.svg" alt="Canonical Ubuntu" height="60" width="60"/>
-   </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
+   <a href="https://visualstudio.microsoft.com">
       <img src="./assets/visual-studio.svg" alt="Visual Studio" height="60" width="60"/>
    </a>
-   <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/windows.svg" alt="Windows" height="60" width="60"/>
+   <a href="https://ubuntu.com">
+      <img src="./assets/ubuntu.svg" alt="Canonical Ubuntu" height="60" width="60"/>
+   </a>
+   <a href="https://linuxmint.com/about.php">
+      <img src="./assets/linux-mint.svg" alt="Linux Mint" height="60" width="60"/>
+   </a>
+   <a href="https://www.microsoft.com/sql-server/sql-server-downloads">
+      <img src="./assets/sql-server.svg" alt="SQL Server" height="60" width="60"/>
+   </a>
+   <a href="https://www.mysql.com/">
+      <img src="./assets/mysql-server.svg" alt="MySQL" height="60" width="60"/>
    </a>
 </p>
 
