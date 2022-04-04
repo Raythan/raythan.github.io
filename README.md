@@ -21,7 +21,30 @@
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="Csharp" height="40" width="40"/>
-   </a>  
+   </a>
+   
+   
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/linux-mint.svg" alt="Linux Mint" height="40" width="40"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/office-365.svg" alt="Office 365" height="40" width="40"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/sql-server.svg" alt="SQL Server" height="40" width="40"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/teams.svg" alt="Teams" height="40" width="40"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/ubuntu.svg" alt="Canonical Ubuntu" height="40" width="40"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/visual-studio.svg" alt="Visual Studio" height="40" width="40"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/windows.svg" alt="Windows" height="40" width="40"/>
+   </a>
 </p>
 
 <h4 align="center">
