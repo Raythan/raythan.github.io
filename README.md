@@ -16,6 +16,9 @@
    <a href="https://docs.microsoft.com/dotnet/csharp">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="Csharp" height="60" width="60"/>
    </a>
+   <a href="https://docs.microsoft.com/pt-br/cpp/windows">
+      <img src="./assets/c-plusplus.svg" alt="C++" height="60" width="60"/>
+   </a>
    <a href="https://www.office.com/">
       <img src="./assets/office-365.svg" alt="Office 365" height="60" width="60"/>
    </a>
