@@ -32,6 +32,9 @@
       <img src="./assets/sql-server.svg" alt="SQL Server" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/mysql-server.svg" alt="MySQL" height="60" width="60"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
       <img src="./assets/teams.svg" alt="Teams" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
