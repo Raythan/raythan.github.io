@@ -2,48 +2,46 @@
 
   <p align="center">
    <a href="https://code.visualstudio.com/">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="40" height="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="60" height="60"/>
    </a>
    <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" alt="html5" width="40" height="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" alt="html5" width="60" height="60"/>
    </a>
    <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" alt="css3" width="40" height="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" alt="css3" width="60" height="60"/>
    </a>
    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" width="60" height="60"/>
    </a>
    <a href="https://www.slack.com">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="slack" width="40" height="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="slack" width="60" height="60"/>
    </a>
    <a href="https://git-scm.com/">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="40" height="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="git" width="60" height="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="Csharp" height="40" width="40"/>
-   </a>
-   
-   
-   <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/linux-mint.svg" alt="Linux Mint" height="40" width="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="Csharp" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/office-365.svg" alt="Office 365" height="40" width="40"/>
+      <img src="./assets/linux-mint.svg" alt="Linux Mint" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/sql-server.svg" alt="SQL Server" height="40" width="40"/>
+      <img src="./assets/office-365.svg" alt="Office 365" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/teams.svg" alt="Teams" height="40" width="40"/>
+      <img src="./assets/sql-server.svg" alt="SQL Server" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/ubuntu.svg" alt="Canonical Ubuntu" height="40" width="40"/>
+      <img src="./assets/teams.svg" alt="Teams" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/visual-studio.svg" alt="Visual Studio" height="40" width="40"/>
+      <img src="./assets/ubuntu.svg" alt="Canonical Ubuntu" height="60" width="60"/>
    </a>
    <a href="https://docs.microsoft.com/dotnet/csharp">
-      <img src="./assets/windows.svg" alt="Windows" height="40" width="40"/>
+      <img src="./assets/visual-studio.svg" alt="Visual Studio" height="60" width="60"/>
+   </a>
+   <a href="https://docs.microsoft.com/dotnet/csharp">
+      <img src="./assets/windows.svg" alt="Windows" height="60" width="60"/>
    </a>
 </p>
 
