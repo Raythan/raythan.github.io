@@ -1,9 +1,6 @@
 [![banner](./assets/banner.png)](https://github.com/Raythan)
 
   <p align="center">
-   <a href="https://code.visualstudio.com/">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="60" height="60"/>
-   </a>
    <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" alt="html5" width="60" height="60"/>
    </a>
@@ -25,6 +22,9 @@
    <a href="https://www.microsoft.com/windows">
       <img src="./assets/windows.svg" alt="Windows" height="60" width="60"/>
    </a>
+   <a href="https://code.visualstudio.com/">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="vscode" width="60" height="60"/>
+   </a>
    <a href="https://visualstudio.microsoft.com">
       <img src="./assets/visual-studio.svg" alt="Visual Studio" height="60" width="60"/>
    </a>
@@ -39,6 +39,15 @@
    </a>
    <a href="https://www.mysql.com/">
       <img src="./assets/mysql-server.svg" alt="MySQL" height="60" width="60"/>
+   </a>
+   <a href="https://www.lua.org">
+      <img src="./assets/lua.svg" alt="Lua" height="60" width="60"/>
+   </a>
+   <a href="https://github.com/">
+      <img src="./assets/github.svg" alt="GitHub" height="60" width="60"/>
+   </a>
+   <a href="https://about.gitlab.com/">
+      <img src="./assets/gitlab.svg" alt="GitLab" height="60" width="60"/>
    </a>
 </p>
 
