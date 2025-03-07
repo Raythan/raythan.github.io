@@ -1,229 +1,555 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-  <title>Raythan Pages</title>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style type="text/css">
-    * {
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Timeline Pessoal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    body {
-      background: black;
-    }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-    canvas {
-      display: block;
-    }
+        .container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
 
-    #typer {
-      color: rgba(0, 255, 0, 0.8);
-      font-weight: normal;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 100%;
-      display: none;
-      text-align: left;
-      margin-top: .5%;
-    }
+        .left-side, .right-side {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100vh;
+            position: relative;
+        }
 
-    #typer h1 {
-      margin-top: 5%;
-    }
+        .divider {
+            width: 4px;
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
 
-    #typer table {
-      font-size: 100%;
-      width: 80%;
-    }
+        .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70px;
+            text-align: center;
+            overflow: hidden;
+        }
 
-    #typer table th {
-      font-size: 150%;
-    }
+		.typing-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
 
-    #typer table td {
-      padding: .3%;
-      font-size: 100%;
-    }
+        .typing-effect {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #2575fc;
+            width: 0;
+            animation: 
+                typing 3s steps(40, end) forwards, 
+                blink-caret 0.7s step-end infinite;
+        }
 
-    #typer table td button {
-      width: 100%;
-      font-size: 70%;
-    }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
 
-    #typer h1 {
-      font-size: 100%;
-    }
-  </style>
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #2575fc }
+        }
+
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .calendar-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fall 0.5s ease-out;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .calendar-item:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fall {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calendar-item h2 {
+            margin-bottom: 15px;
+            color: #2575fc;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .calendar-item h2:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            bottom: -5px;
+            left: 0;
+        }
+
+        .timer {
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to bottom, #f3f4f6, #fff);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .time-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2575fc;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Form styling */
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2575fc;
+            box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .delete-btn:hover {
+            background-color: rgba(255, 107, 107, 0.1);
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #5910a8, #1e60ca);
+        }
+
+        /* Calendar page effect */
+        .page-effect {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            background-color: #f5f5f5;
+            border-radius: 0 0 0 10px;
+            box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.1);
+            right: 0;
+            transform: rotate(0deg);
+            transform-origin: bottom right;
+            transition: transform 0.3s;
+        }
+
+        .calendar-item:hover .page-effect {
+            transform: rotate(-15deg);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                height: auto;
+                min-height: 50vh;
+            }
+
+            .divider {
+                width: 100%;
+                height: 4px;
+                position: relative;
+            }
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+    </style>
 </head>
-
 <body>
-  <canvas id="c"></canvas>
-  <div id="typer">
-    <table>
-      <tr>
-        <th>
-          Speed Up
-        </th>
-        <th>
-          Speed Down
-        </th>
-        <th>
-          Speed
-        </th>
-      </tr>
-      <tr>
-        <td><button class="btn btn-primary" id="buttonSpeedUp" onclick="speedUp('speedWriting', 'writerSpeed')">/\ Write
-            Speed Faster</button></td>
-        <td><button class="btn btn-secondary" id="buttonSpeedDown" onclick="speedDown('speedWriting', 'writerSpeed')">\/
-            Write Speed Slower</button></td>
-        <td><span id="writerSpeed"></span> miliseconds.</td>
-      </tr>
-      <tr>
-        <td><button class="btn btn-primary" id="buttonChangeAnimationUp"
-            onclick="speedUp('speedTransactionAnimation', 'transactionSpeed')">/\ Change Animation Speed Faster</button>
-        </td>
-        <td><button class="btn btn-secondary" id="buttonChangeAnimationDown"
-            onclick="speedDown('speedTransactionAnimation', 'transactionSpeed')">\/ Change Animation Speed
-            Slower</button></td>
-        <td><span id="transactionSpeed"></span> miliseconds.</td>
-      </tr>
-      <tr>
-        <td><button class="btn btn-warning" id="buttonStopStart" onclick="interruptAnimation()">Stop Animation!</button>
-        </td>
-      </tr>
-    </table><br /><br />
-    <h1 id="typer-head-1"></h1>
-  </div>
+    <div class="container">
+        <div class="left-side">
+            <h1 class="title">Marcos temporais</h1>
+            <div class="calendar-container" id="my-events"></div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="right-side">
+            <h1 class="title" id="title-message"></h1>
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="event-name">Nome do Evento (máx. 30 caracteres):</label>
+                    <input type="text" id="event-name" maxlength="30" placeholder="Ex: Formatura, Casamento...">
+                    <p id="name-error" class="error"></p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-date">Data do Evento:</label>
+                    <input type="datetime-local" id="event-date">
+                    <p id="date-error" class="error"></p>
+                </div>
+                
+                <button id="add-event">Adicionar Evento</button>
+            </div>
+            
+            <div class="calendar-container" id="user-events"></div>
+        </div>
+    </div>
 
-  <script type="text/javascript">
-    var c = document.getElementById("c");
-    var typer = document.getElementById("typer-head-1");
-    var typerDiv = document.getElementById("typer");
-    var b = document.getElementById("buttonStopStart");
-    var ctx = c.getContext("2d");
-    var isWriting, writed = false;
-    var buttonWasPressed = false;
-    var speedArr = {
-      'speedWriting': 20,
-      'speedTransactionAnimation': 4000
-    }
+    <script>
+        // Dados pré-definidos
+        const myEvents = [
+            { nome: "Nascimento", data: "1992-03-14 14:00:00" },
+            { nome: "Casamento civil", data: "2014-07-26 11:30:00" },
+            { nome: "Nascimento Laura", data: "2015-07-26 11:11:00" },
+            { nome: "Nascimento Luara", data: "2023-04-29 16:00:00" },
+            { nome: "Casamento religioso", data: "2025-04-29 16:00:00" }
+        ];
 
-    c.height = window.innerHeight;
-    c.width = window.innerWidth;
+        // Verificar se existem eventos do usuário salvos no localStorage
+        let userEvents = JSON.parse(localStorage.getItem('userEvents')) || [];
 
-    var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
-    matrix = matrix.split("");
-
-    var message = "Olá, bem-vindo a minha página do GitHub!<Se precisar me encontrar para mais detalhes ou informações,<considere entrar em contato por uma das vias de comunicação a seguir.<<Email: raythan100@yahoo.com.br<GitHub: https://github.com/Raythan<LinkedIn: https://www.linkedin.com/in/raythan-padovani-8723a3a8";
-    message = message.split("");
-
-    var font_size = 12;
-    var columns = c.width / font_size;
-
-    var drops = [];
-    for (var x = 0; x < columns; x++)
-      drops[x] = 1;
-
-
-    async function draw() {
-      await controlDisplay();
-
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-      ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = "#00ff00";
-      ctx.font = font_size + "px arial";
-      if (!this.isWriting) {
-        for (var i = 0; i < drops.length; i++) {
-          var text = matrix[Math.floor(Math.random() * matrix.length)];
-          ctx.fillText(text, i * font_size, drops[i] * font_size);
-
-          if (drops[i] * font_size > c.height && Math.random() > 0.975)
-            drops[i] = 0;
-
-          drops[i]++;
+        // Função para calcular o tempo decorrido
+        function calculateTimeElapsed(dateString) {
+            const eventDate = new Date(dateString.replace(' ', 'T'));
+            const now = new Date();
+            
+            const totalSeconds = Math.floor((now - eventDate) / 1000);
+            
+            const years = Math.floor(totalSeconds / (365.25 * 24 * 60 * 60));
+            const remainingSecondsAfterYears = totalSeconds % (365.25 * 24 * 60 * 60);
+            
+            const months = Math.floor(remainingSecondsAfterYears / (30.44 * 24 * 60 * 60));
+            const remainingSecondsAfterMonths = remainingSecondsAfterYears % (30.44 * 24 * 60 * 60);
+            
+            const days = Math.floor(remainingSecondsAfterMonths / (24 * 60 * 60));
+            const remainingSecondsAfterDays = remainingSecondsAfterMonths % (24 * 60 * 60);
+            
+            const hours = Math.floor(remainingSecondsAfterDays / (60 * 60));
+            const remainingSecondsAfterHours = remainingSecondsAfterDays % (60 * 60);
+            
+            const minutes = Math.floor(remainingSecondsAfterHours / 60);
+            const seconds = Math.floor(remainingSecondsAfterHours % 60);
+            
+            return {
+                years, months, days, hours, minutes, seconds
+            };
         }
-      }
-    }
 
-    async function writing() {
-      setSpeedText("speedWriting", "writerSpeed");
-      setSpeedText("speedTransactionAnimation", "transactionSpeed");
-      this.typer.innerHTML = "";
-      await this.isWritingOn();
-      await controlDisplay();
-      await typeWriter(0, this.message);
-    }
-
-    async function typeWriter(i, messageArr) {
-      if (i < messageArr.length) {
-        if (messageArr[i] === "<")
-          this.typer.innerHTML += "<br />";
-        else
-          this.typer.innerHTML += messageArr[i];
-
-        i++;
-        setTimeout(typeWriter, speedArr['speedWriting'], i, messageArr);
-      } else {
-        if (!buttonWasPressed) {
-          setTimeout(this.isWritingOn, speedArr['speedTransactionAnimation']);
-          setTimeout(writing, speedArr['speedTransactionAnimation'] * 2);
-        } else {
-          setTimeout(typeWriter, speedArr['speedTransactionAnimation'], i, messageArr);
+        // Função para criar um item de calendário
+        function createCalendarItem(event, container, isUserEvent = false) {
+            const item = document.createElement('div');
+            item.className = 'calendar-item';
+            
+            const title = document.createElement('h2');
+            title.textContent = event.nome;
+            item.appendChild(title);
+            
+            const timer = document.createElement('div');
+            timer.className = 'timer';
+            timer.setAttribute('data-date', event.data);
+            item.appendChild(timer);
+            
+            const pageEffect = document.createElement('div');
+            pageEffect.className = 'page-effect';
+            item.appendChild(pageEffect);
+            
+            // Adicionar botão de exclusão apenas para eventos do usuário
+            if (isUserEvent) {
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '×';
+                deleteBtn.setAttribute('title', 'Remover este evento');
+                deleteBtn.addEventListener('click', function() {
+                    item.style.animation = 'fall 0.5s ease-in reverse';
+                    setTimeout(() => {
+                        const index = Array.from(container.children).indexOf(item);
+                        if (index !== -1) {
+                            userEvents.splice(index, 1);
+                            localStorage.setItem('userEvents', JSON.stringify(userEvents));
+                            item.remove();
+                            updateTitleMessage();
+                        }
+                    }, 500);
+                });
+                item.appendChild(deleteBtn);
+            }
+            
+            container.appendChild(item);
+            updateTimer(timer);
         }
-      }
-    }
 
-    async function isWritingOn() {
-      this.isWriting = !this.isWriting;
-    }
+        // Função para atualizar o cronômetro
+        function updateTimer(timerElement) {
+            const dateString = timerElement.getAttribute('data-date');
+            const timeElapsed = calculateTimeElapsed(dateString);
+            
+            timerElement.innerHTML = '';
+            
+            const timeUnits = [
+                { value: timeElapsed.years, label: 'anos' },
+                { value: timeElapsed.months, label: 'meses' },
+                { value: timeElapsed.days, label: 'dias' },
+                { value: timeElapsed.hours, label: 'horas' },
+                { value: timeElapsed.minutes, label: 'min' },
+                { value: timeElapsed.seconds, label: 'seg' }
+            ];
+            
+            timeUnits.forEach(unit => {
+                const unitDiv = document.createElement('div');
+                unitDiv.className = 'time-unit';
+                
+                const valueSpan = document.createElement('span');
+                valueSpan.className = 'time-value';
+                valueSpan.textContent = unit.value;
+                
+                const labelSpan = document.createElement('span');
+                labelSpan.className = 'time-label';
+                labelSpan.textContent = unit.label;
+                
+                unitDiv.appendChild(valueSpan);
+                unitDiv.appendChild(labelSpan);
+                timerElement.appendChild(unitDiv);
+            });
+        }
 
-    async function controlDisplay() {
-      if (isWriting) {
-        this.typer.style.display = "block";
-        this.typerDiv.style.display = "block";
-        this.c.style.display = "none";
-      }
-      else {
-        this.typer.style.display = "none";
-        this.typerDiv.style.display = "none";
-        this.c.style.display = "block";
-      }
-    }
+        // Função para atualizar a mensagem do título
+        function updateTitleMessage() {
+            const titleElement = document.getElementById('title-message');
+            titleElement.innerHTML = ''; // Limpa o conteúdo atual
+            
+            const message = userEvents.length > 0
+                ? "Obrigado por compartilhar!"
+                : "Compartilhe um marco temporal comigo!";
+            
+            const typingContainer = document.createElement('div');
+            typingContainer.className = 'typing-container';
+            
+            const typingSpan = document.createElement('span');
+            typingSpan.className = 'typing-effect';
+            typingSpan.textContent = message;
+            
+            typingContainer.appendChild(typingSpan);
+            titleElement.appendChild(typingContainer);
+        }
 
-    async function interruptAnimation() {
-      this.buttonWasPressed = !this.buttonWasPressed;
-      b.innerHTML = this.buttonWasPressed ? "Start Animation!" : "Stop Animation!";
-    }
+        // Inicializar eventos
+        function initializeEvents() {
+            const myEventsContainer = document.getElementById('my-events');
+            const userEventsContainer = document.getElementById('user-events');
+            
+            myEventsContainer.innerHTML = '';
+            userEventsContainer.innerHTML = '';
+            
+            // Adicionar eventos pré-definidos
+            myEvents.forEach(event => {
+                createCalendarItem(event, myEventsContainer);
+            });
+            
+            // Adicionar eventos do usuário
+            userEvents.forEach(event => {
+                createCalendarItem(event, userEventsContainer, true);
+            });
+            
+            // Atualizar a mensagem do título
+            updateTitleMessage();
+        }
 
-    async function setSpeedText(objectIndex, spanElementId) {
-      document.getElementById(spanElementId).innerHTML = speedArr[objectIndex];
-    }
+        // Atualizar todos os cronômetros a cada segundo
+        function updateAllTimers() {
+            document.querySelectorAll('.timer').forEach(updateTimer);
+        }
 
-    async function speedUp(objectIndex, spanElementId) {
-      var e = speedArr[objectIndex];
-      speedArr[objectIndex] = e <= 0 ? 0 :
-        e <= 10 ? e - 1 :
-          e <= 100 ? e - 10 :
-            e <= 1000 ? e - 100 :
-              e - 1000;
-      await setSpeedText(objectIndex, spanElementId);
-    }
+        // Adicionar evento
+        document.getElementById('add-event').addEventListener('click', function() {
+            const nameInput = document.getElementById('event-name');
+            const dateInput = document.getElementById('event-date');
+            const nameError = document.getElementById('name-error');
+            const dateError = document.getElementById('date-error');
+            
+            // Validação
+            let isValid = true;
+            nameError.textContent = '';
+            dateError.textContent = '';
+            
+            if (!nameInput.value.trim()) {
+                nameError.textContent = 'Por favor, informe o nome do evento.';
+                isValid = false;
+            }
+            
+            if (!dateInput.value) {
+                dateError.textContent = 'Por favor, informe a data do evento.';
+                isValid = false;
+            } else {
+                const eventDate = new Date(dateInput.value);
+                const now = new Date();
+                
+                if (eventDate > now) {
+                    dateError.textContent = 'A data deve ser no passado.';
+                    isValid = false;
+                }
+            }
+            
+            if (isValid) {
+                const newEvent = {
+                    nome: nameInput.value.trim(),
+                    data: dateInput.value.replace('T', ' ')
+                };
+                
+                userEvents.push(newEvent);
+                localStorage.setItem('userEvents', JSON.stringify(userEvents));
+                
+                const userEventsContainer = document.getElementById('user-events');
+                createCalendarItem(newEvent, userEventsContainer, true);
+                
+                // Limpar formulário
+                nameInput.value = '';
+                dateInput.value = '';
+                
+                // Atualizar mensagem
+                updateTitleMessage();
+            }
+        });
 
-    async function speedDown(objectIndex, spanElementId) {
-      var e = speedArr[objectIndex];
-      speedArr[objectIndex] = e <= 9 ? e + 1 :
-        e <= 99 ? e + 10 :
-          e <= 999 ? e + 100 :
-            e + 1000;
-      await setSpeedText(objectIndex, spanElementId);
-    }
-
-    setInterval(draw, 35);
-    setTimeout(writing, speedArr['speedTransactionAnimation']);
-  </script>
+        // Inicializar a página
+        initializeEvents();
+        
+        // Atualizar cronômetros a cada segundo
+        setInterval(updateAllTimers, 1000);
+    </script>
 </body>
-
 </html>
