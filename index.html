@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Timeline Pessoal</title>
     <style>
+        :root {
+            --primary-gradient: linear-gradient(to right, #6a11cb, #2575fc);
+            --secondary-gradient: linear-gradient(to bottom, #6a11cb, #2575fc);
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-muted: #666;
+            --accent: #2575fc;
+            --error: #ff6b6b;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             overflow-x: hidden;
         }
 
@@ -29,12 +41,11 @@
             padding: 20px;
             overflow-y: auto;
             height: 100vh;
-            position: relative;
         }
 
         .divider {
             width: 4px;
-            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            background: var(--secondary-gradient);
             height: 100vh;
             position: sticky;
             top: 0;
@@ -46,10 +57,10 @@
             align-items: center;
             min-height: 70px;
             text-align: center;
-            overflow: hidden;
+            margin-bottom: 20px;
         }
 
-		.typing-container {
+        .typing-container {
             position: relative;
             width: 100%;
             display: flex;
@@ -60,79 +71,94 @@
             display: inline-block;
             overflow: hidden;
             white-space: nowrap;
-            border-right: 2px solid #2575fc;
+            border-right: 2px solid var(--accent);
             width: 0;
-            animation: 
-                typing 3s steps(40, end) forwards, 
-                blink-caret 0.7s step-end infinite;
+            animation: typing 3s steps(40, end) forwards, blink-caret 0.7s step-end infinite;
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent) } }
 
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #2575fc }
-        }
-
-        .calendar-container {
+        .section-container {
             display: flex;
             flex-direction: column;
             gap: 25px;
             padding: 10px;
+            margin-bottom: 30px;
         }
 
-        .calendar-item {
-            background-color: white;
+        .card {
+            background-color: var(--card-bg);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             animation: fall 0.5s ease-out;
             position: relative;
             transition: transform 0.3s;
         }
 
-        .calendar-item:hover {
+        .card:hover {
             transform: translateY(-5px);
         }
 
         @keyframes fall {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .calendar-item h2 {
+        .card h2 {
             margin-bottom: 15px;
-            color: #2575fc;
+            color: var(--accent);
             font-size: 1.3rem;
             position: relative;
             display: inline-block;
         }
 
-        .calendar-item h2:after {
+        .card h2:after {
             content: '';
             position: absolute;
             width: 100%;
             height: 2px;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: var(--primary-gradient);
             bottom: -5px;
             left: 0;
+        }
+
+        /* Projetos Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .project-link:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: scale(1.05);
         }
 
         .timer {
             font-size: 1.1rem;
             font-weight: 500;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+            gap: 8px;
             margin-top: 15px;
         }
 
@@ -140,36 +166,33 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: linear-gradient(to bottom, #f3f4f6, #fff);
-            padding: 8px;
+            background: linear-gradient(to bottom, #f8f9fa, #fff);
+            padding: 8px 4px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .time-value {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            color: #2575fc;
+            color: var(--accent);
         }
 
         .time-label {
-            font-size: 0.8rem;
-            color: #666;
+            font-size: 0.7rem;
+            color: var(--text-muted);
             text-transform: uppercase;
         }
 
-        /* Form styling */
         .form-container {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             margin-bottom: 30px;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+        .form-group { margin-bottom: 15px; }
 
         label {
             display: block;
@@ -189,28 +212,25 @@
 
         input:focus {
             outline: none;
-            border-color: #2575fc;
+            border-color: var(--accent);
             box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
         }
 
-        button {
+        button#add-event {
             padding: 10px 20px;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: var(--primary-gradient);
             color: white;
             border: none;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
         }
 
-        button:hover {
+        button#add-event:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
-        }
-
-        button:active {
-            transform: translateY(0);
         }
 
         .delete-btn {
@@ -218,105 +238,81 @@
             top: 10px;
             right: 10px;
             background: transparent;
-            color: #ff6b6b;
-            font-size: 1.2rem;
-            padding: 5px 10px;
-            border-radius: 50%;
-            transition: background-color 0.2s;
+            color: var(--error);
+            font-size: 1.4rem;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 30px;
-            height: 30px;
+            border-radius: 50%;
+            transition: background 0.2s;
         }
 
-        .delete-btn:hover {
-            background-color: rgba(255, 107, 107, 0.1);
-            box-shadow: none;
-            transform: none;
-        }
+        .delete-btn:hover { background-color: rgba(255, 107, 107, 0.1); }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #6a11cb, #2575fc);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #5910a8, #1e60ca);
-        }
-
-        /* Calendar page effect */
         .page-effect {
             position: absolute;
             bottom: 0;
-            width: 30px;
-            height: 30px;
-            background-color: #f5f5f5;
-            border-radius: 0 0 0 10px;
-            box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.1);
             right: 0;
-            transform: rotate(0deg);
-            transform-origin: bottom right;
+            width: 25px;
+            height: 25px;
+            background-color: var(--bg-color);
+            border-radius: 0 0 0 10px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
         }
 
-        .calendar-item:hover .page-effect {
-            transform: rotate(-15deg);
-        }
+        .card:hover .page-effect { transform: rotate(-15deg); }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--secondary-gradient); border-radius: 10px; }
 
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .left-side, .right-side {
-                height: auto;
-                min-height: 50vh;
-            }
-
-            .divider {
-                width: 100%;
-                height: 4px;
-                position: relative;
-            }
+            .container { flex-direction: column; }
+            .left-side, .right-side { height: auto; min-height: auto; }
+            .divider { width: 100%; height: 4px; position: relative; }
         }
 
-        .error {
-            color: #ff6b6b;
-            font-size: 0.9rem;
-            margin-top: 5px;
+        .error { color: var(--error); font-size: 0.85rem; margin-top: 5px; height: 1rem; }
+        
+        .side-image {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
         }
-		
-		.side-image {
-			display: block;
-			margin: 20px auto;
-			max-width: 100%;
-			border-radius: 10px;
-			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-		}
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 10px 0 20px;
+            text-align: center;
+            color: var(--text-main);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- <div class="left-side"> -->
-            <!-- <h1 class="title">Marcos temporais</h1> -->
-            <!-- <div class="calendar-container" id="my-events"></div> -->
-        <!-- </div> -->
-		<div class="left-side">
-			<img src="imagem.jpg" alt="Pilares da minha vida" class="side-image">
-			<h1 class="title">Marcos temporais</h1>
-			<div class="calendar-container" id="my-events"></div>
-		</div>
+        <div class="left-side">
+            <img src="imagem.jpg" alt="Pilares da minha vida" class="side-image">
+            
+            <h2 class="section-title">Meus Projetos</h2>
+            <div class="section-container" id="projects-list">
+                <div class="card">
+                    <div class="projects-grid" id="projects-grid">
+                        <!-- Projetos via JS -->
+                    </div>
+                    <div class="page-effect"></div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Marcos Temporais</h2>
+            <div class="section-container" id="my-events"></div>
+        </div>
         
         <div class="divider"></div>
         
@@ -326,7 +322,7 @@
             <div class="form-container">
                 <div class="form-group">
                     <label for="event-name">Nome do Evento (máx. 30 caracteres):</label>
-                    <input type="text" id="event-name" maxlength="30" placeholder="Ex: Formatura, Casamento...">
+                    <input type="text" id="event-name" maxlength="30" placeholder="Ex: Formatura, Viagem...">
                     <p id="name-error" class="error"></p>
                 </div>
                 
@@ -339,12 +335,21 @@
                 <button id="add-event">Adicionar Evento</button>
             </div>
             
-            <div class="calendar-container" id="user-events"></div>
+            <div class="section-container" id="user-events"></div>
         </div>
     </div>
 
     <script>
-        // Dados pré-definidos
+        // CONFIGURAÇÕES
+        const myProjects = [
+            { nome: "GitHub", url: "https://github.com/raythan" },
+            { nome: "LinkedIn", url: "https://www.linkedin.com/in/raythan-padovani-abreu-machado-8723a3a8" },
+            { nome: "Calculadora de churrasco", url: "https://raythan.github.io/churrapp" },
+            { nome: "Técnicos Cartola", url: "https://raythan.github.io/tecnicos_cartola" },
+            { nome: "Protocolo Netrunner", url: "https://raythan.github.io/protocolo-netrunner" },
+            { nome: "Receitas na geladeira", url: "https://raythan.github.io/fridge-ghost" },
+        ];
+
         const myEvents = [
             { nome: "Nascimento", data: "1992-03-14 14:00:00" },
             { nome: "Casamento civil", data: "2014-07-26 11:30:00" },
@@ -353,216 +358,138 @@
             { nome: "Casamento religioso", data: "2025-04-29 16:00:00" }
         ];
 
-        // Verificar se existem eventos do usuário salvos no localStorage
         let userEvents = JSON.parse(localStorage.getItem('userEvents')) || [];
 
-        // Função para calcular o tempo decorrido
+        // LÓGICA
         function calculateTimeElapsed(dateString) {
             const eventDate = new Date(dateString.replace(' ', 'T'));
             const now = new Date();
+            let diff = Math.max(0, now - eventDate);
             
-            const totalSeconds = Math.floor((now - eventDate) / 1000);
+            const totalSeconds = Math.floor(diff / 1000);
             
-            const years = Math.floor(totalSeconds / (365.25 * 24 * 60 * 60));
-            const remainingSecondsAfterYears = totalSeconds % (365.25 * 24 * 60 * 60);
+            const years = Math.floor(totalSeconds / (365 * 24 * 60 * 60));
+            const remYears = totalSeconds % (365 * 24 * 60 * 60);
             
-            const months = Math.floor(remainingSecondsAfterYears / (30.44 * 24 * 60 * 60));
-            const remainingSecondsAfterMonths = remainingSecondsAfterYears % (30.44 * 24 * 60 * 60);
+            const months = Math.floor(remYears / (30 * 24 * 60 * 60));
+            const remMonths = remYears % (30 * 24 * 60 * 60);
             
-            const days = Math.floor(remainingSecondsAfterMonths / (24 * 60 * 60));
-            const remainingSecondsAfterDays = remainingSecondsAfterMonths % (24 * 60 * 60);
+            const days = Math.floor(remMonths / (24 * 60 * 60));
+            const remDays = remMonths % (24 * 60 * 60);
             
-            const hours = Math.floor(remainingSecondsAfterDays / (60 * 60));
-            const remainingSecondsAfterHours = remainingSecondsAfterDays % (60 * 60);
+            const hours = Math.floor(remDays / (3600));
+            const remHours = remDays % 3600;
             
-            const minutes = Math.floor(remainingSecondsAfterHours / 60);
-            const seconds = Math.floor(remainingSecondsAfterHours % 60);
+            const minutes = Math.floor(remHours / 60);
+            const seconds = Math.floor(remHours % 60);
             
-            return {
-                years, months, days, hours, minutes, seconds
-            };
+            return { years, months, days, hours, minutes, seconds };
         }
 
-        // Função para criar um item de calendário
         function createCalendarItem(event, container, isUserEvent = false) {
-            const item = document.createElement('div');
-            item.className = 'calendar-item';
+            const card = document.createElement('div');
+            card.className = 'card';
             
-            const title = document.createElement('h2');
-            title.textContent = event.nome;
-            item.appendChild(title);
+            const h2 = document.createElement('h2');
+            h2.textContent = event.nome;
+            card.appendChild(h2);
             
             const timer = document.createElement('div');
             timer.className = 'timer';
-            timer.setAttribute('data-date', event.data);
-            item.appendChild(timer);
+            timer.dataset.date = event.data;
             
-            const pageEffect = document.createElement('div');
-            pageEffect.className = 'page-effect';
-            item.appendChild(pageEffect);
+            const labels = ['anos', 'meses', 'dias', 'horas', 'min', 'seg'];
+            labels.forEach(label => {
+                const unit = document.createElement('div');
+                unit.className = 'time-unit';
+                unit.innerHTML = `<span class="time-value">0</span><span class="time-label">${label}</span>`;
+                timer.appendChild(unit);
+            });
             
-            // Adicionar botão de exclusão apenas para eventos do usuário
+            card.appendChild(timer);
+            card.appendChild(Object.assign(document.createElement('div'), {className: 'page-effect'}));
+            
             if (isUserEvent) {
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'delete-btn';
-                deleteBtn.innerHTML = '×';
-                deleteBtn.setAttribute('title', 'Remover este evento');
-                deleteBtn.addEventListener('click', function() {
-                    item.style.animation = 'fall 0.5s ease-in reverse';
+                const del = document.createElement('button');
+                del.className = 'delete-btn';
+                del.innerHTML = '&times;';
+                del.onclick = () => {
+                    card.style.animation = 'fall 0.3s ease-in reverse';
                     setTimeout(() => {
-                        const index = Array.from(container.children).indexOf(item);
-                        if (index !== -1) {
-                            userEvents.splice(index, 1);
+                        const idx = userEvents.findIndex(e => e.nome === event.nome && e.data === event.data);
+                        if(idx !== -1) {
+                            userEvents.splice(idx, 1);
                             localStorage.setItem('userEvents', JSON.stringify(userEvents));
-                            item.remove();
+                            card.remove();
                             updateTitleMessage();
                         }
-                    }, 500);
-                });
-                item.appendChild(deleteBtn);
-            }
-            
-            container.appendChild(item);
-            updateTimer(timer);
-        }
-
-        // Função para atualizar o cronômetro
-        function updateTimer(timerElement) {
-            const dateString = timerElement.getAttribute('data-date');
-            const timeElapsed = calculateTimeElapsed(dateString);
-            
-            timerElement.innerHTML = '';
-            
-            const timeUnits = [
-                { value: timeElapsed.years, label: 'anos' },
-                { value: timeElapsed.months, label: 'meses' },
-                { value: timeElapsed.days, label: 'dias' },
-                { value: timeElapsed.hours, label: 'horas' },
-                { value: timeElapsed.minutes, label: 'min' },
-                { value: timeElapsed.seconds, label: 'seg' }
-            ];
-            
-            timeUnits.forEach(unit => {
-                const unitDiv = document.createElement('div');
-                unitDiv.className = 'time-unit';
-                
-                const valueSpan = document.createElement('span');
-                valueSpan.className = 'time-value';
-                valueSpan.textContent = unit.value;
-                
-                const labelSpan = document.createElement('span');
-                labelSpan.className = 'time-label';
-                labelSpan.textContent = unit.label;
-                
-                unitDiv.appendChild(valueSpan);
-                unitDiv.appendChild(labelSpan);
-                timerElement.appendChild(unitDiv);
-            });
-        }
-
-        // Função para atualizar a mensagem do título
-        function updateTitleMessage() {
-            const titleElement = document.getElementById('title-message');
-            titleElement.innerHTML = ''; // Limpa o conteúdo atual
-            
-            const message = userEvents.length > 0
-                ? "Obrigado por compartilhar!"
-                : "Compartilhe um marco temporal comigo!";
-            
-            const typingContainer = document.createElement('div');
-            typingContainer.className = 'typing-container';
-            
-            const typingSpan = document.createElement('span');
-            typingSpan.className = 'typing-effect';
-            typingSpan.textContent = message;
-            
-            typingContainer.appendChild(typingSpan);
-            titleElement.appendChild(typingContainer);
-        }
-
-        // Inicializar eventos
-        function initializeEvents() {
-            const myEventsContainer = document.getElementById('my-events');
-            const userEventsContainer = document.getElementById('user-events');
-            
-            myEventsContainer.innerHTML = '';
-            userEventsContainer.innerHTML = '';
-            
-            // Adicionar eventos pré-definidos
-            myEvents.forEach(event => {
-                createCalendarItem(event, myEventsContainer);
-            });
-            
-            // Adicionar eventos do usuário
-            userEvents.forEach(event => {
-                createCalendarItem(event, userEventsContainer, true);
-            });
-            
-            // Atualizar a mensagem do título
-            updateTitleMessage();
-        }
-
-        // Atualizar todos os cronômetros a cada segundo
-        function updateAllTimers() {
-            document.querySelectorAll('.timer').forEach(updateTimer);
-        }
-
-        // Adicionar evento
-        document.getElementById('add-event').addEventListener('click', function() {
-            const nameInput = document.getElementById('event-name');
-            const dateInput = document.getElementById('event-date');
-            const nameError = document.getElementById('name-error');
-            const dateError = document.getElementById('date-error');
-            
-            // Validação
-            let isValid = true;
-            nameError.textContent = '';
-            dateError.textContent = '';
-            
-            if (!nameInput.value.trim()) {
-                nameError.textContent = 'Por favor, informe o nome do evento.';
-                isValid = false;
-            }
-            
-            if (!dateInput.value) {
-                dateError.textContent = 'Por favor, informe a data do evento.';
-                isValid = false;
-            } else {
-                const eventDate = new Date(dateInput.value);
-                const now = new Date();
-                
-                if (eventDate > now) {
-                    dateError.textContent = 'A data deve ser no passado.';
-                    isValid = false;
-                }
-            }
-            
-            if (isValid) {
-                const newEvent = {
-                    nome: nameInput.value.trim(),
-                    data: dateInput.value.replace('T', ' ')
+                    }, 300);
                 };
-                
-                userEvents.push(newEvent);
+                card.appendChild(del);
+            }
+            
+            container.appendChild(card);
+            updateTimerDisplay(timer);
+        }
+
+        function updateTimerDisplay(timerElement) {
+            const time = calculateTimeElapsed(timerElement.dataset.date);
+            const values = [time.years, time.months, time.days, time.hours, time.minutes, time.seconds];
+            const spans = timerElement.querySelectorAll('.time-value');
+            values.forEach((val, i) => {
+                if (spans[i].textContent != val) spans[i].textContent = val;
+            });
+        }
+
+        function updateTitleMessage() {
+            const title = document.getElementById('title-message');
+            const msg = userEvents.length > 0 ? "Obrigado por compartilhar!" : "Compartilhe um marco temporal comigo!";
+            title.innerHTML = `<div class="typing-container"><span class="typing-effect">${msg}</span></div>`;
+        }
+
+        function init() {
+            // Projetos
+            const projectGrid = document.getElementById('projects-grid');
+            myProjects.forEach(p => {
+                const a = document.createElement('a');
+                a.className = 'project-link';
+                a.href = p.url;
+                a.target = '_blank';
+                a.textContent = p.nome;
+                projectGrid.appendChild(a);
+            });
+
+            // Eventos
+            const myCont = document.getElementById('my-events');
+            const userCont = document.getElementById('user-events');
+            
+            myEvents.forEach(e => createCalendarItem(e, myCont));
+            userEvents.forEach(e => createCalendarItem(e, userCont, true));
+            
+            updateTitleMessage();
+            setInterval(() => document.querySelectorAll('.timer').forEach(updateTimerDisplay), 1000);
+        }
+
+        document.getElementById('add-event').onclick = () => {
+            const n = document.getElementById('event-name');
+            const d = document.getElementById('event-date');
+            const errN = document.getElementById('name-error');
+            const errD = document.getElementById('date-error');
+            
+            errN.textContent = n.value.trim() ? '' : 'Informe o nome.';
+            errD.textContent = d.value ? (new Date(d.value) > new Date() ? 'A data deve ser no passado.' : '') : 'Informe a data.';
+            
+            if (!errN.textContent && !errD.textContent) {
+                const e = { nome: n.value.trim(), data: d.value.replace('T', ' ') };
+                userEvents.push(e);
                 localStorage.setItem('userEvents', JSON.stringify(userEvents));
-                
-                const userEventsContainer = document.getElementById('user-events');
-                createCalendarItem(newEvent, userEventsContainer, true);
-                
-                // Limpar formulário
-                nameInput.value = '';
-                dateInput.value = '';
-                
-                // Atualizar mensagem
+                createCalendarItem(e, document.getElementById('user-events'), true);
+                n.value = ''; d.value = '';
                 updateTitleMessage();
             }
-        });
+        };
 
-        // Inicializar a página
-        initializeEvents();
-        
-        // Atualizar cronômetros a cada segundo
-        setInterval(updateAllTimers, 1000);
+        init();
     </script>
 </body>
 </html>
